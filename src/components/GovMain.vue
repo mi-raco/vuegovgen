@@ -1,12 +1,22 @@
 <script setup>
 import { ref } from 'vue';
-import GenContent from './GenContent.vue'
+var server = require('../services/server.js');
 
+let assistant_id = ref('asst_75jNB2zts4yr9IIuiPC6hsMl');
+//let assistant_id = ref('asst_2udgUUyd0VmAoO9wktKry1c6');
+let thread_id = ref('');
+let isLoading = ref(false);
 let inputText = ref('');
-let content = ref('');
+let generatedContent = ref('');
 
-const handleSubmit = () => {
-  content.value = inputText.value;
+let handleSubmit = async () => {
+  if (inputText) {
+    isLoading.value = true;
+    const response = await server.askAssistant(inputText.value, assistant_id.value, thread_id.value);
+    thread_id.value = response.data.t_id;
+    generatedContent.value = response.data.text;
+    isLoading.value = false;
+  }
 }
 </script>
 
@@ -22,7 +32,9 @@ const handleSubmit = () => {
       </div>
       <button type="submit" class="govuk-button">Submit</button>
     </form>
-    <GenContent :content="content" />
+    <br />
+    <div v-if="isLoading" class="govuk-tag govuk-tag--yellow">Loading</div>
+    <div class="govuk-body" v-html="generatedContent"></div>
     <br />
   </main>
 </template>
