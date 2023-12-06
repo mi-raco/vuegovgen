@@ -2,8 +2,8 @@
 import { ref } from 'vue';
 var server = require('../services/server.js');
 
-//let assistant_id = ref('asst_75jNB2zts4yr9IIuiPC6hsMl');
-let assistant_id = ref('asst_2udgUUyd0VmAoO9wktKry1c6');
+let assistant_id = ref('asst_75jNB2zts4yr9IIuiPC6hsMl');
+//let assistant_id = ref('asst_2udgUUyd0VmAoO9wktKry1c6');
 let thread_id = ref('');
 let isLoading = ref(false);
 let inputText = ref('');
