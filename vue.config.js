@@ -7,7 +7,7 @@ module.exports = defineConfig({
   configureWebpack: {
     resolve: {
       alias: {
-        'govuk': path.resolve(__dirname, 'node_modules/govuk-frontend/govuk/'),
+        'govuk': path.resolve(__dirname, 'public/govuk/'),
         'services': path.resolve(__dirname, 'src/services/'),
         'components': path.resolve(__dirname, 'src/components/'),
         'public': path.resolve(__dirname, 'public/'),
